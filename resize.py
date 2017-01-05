@@ -8,9 +8,9 @@ __version__ = '1.1'
 def resize(file_path, new_width, sub_folder='resized'):
     # Resize any input image, outputting to a folder
     img = Image.open(file_path)
-    width, height = img.size
+    current_width, _ = img.size
     new_height = int((float(img.size[1]) * float((new_width / float(img.size[0])))))
-    if int(new_width) < width:  # always resize down, don't resize up
+    if int(new_width) < current_width:  # always resize down, don't resize up
         img = img.resize((new_width, new_height), Image.ANTIALIAS)
     source_folder, source_file = os.path.split(file_path)
     save_to_dir = os.path.join(source_folder, sub_folder)
